@@ -16,7 +16,7 @@ export default function Hero() {
   ];
 
   return (
-    <div className="relative overflow-hidden h-[650px] md:h-[780px] bg-black">
+    <div className="relative overflow-hidden h-[550px] md:h-[780px] bg-black">
       <nav className="flex justify-between items-center p-6 relative z-10">
         <div>
           <Image src="/logo.png" width={40} height={40} alt="mylogo" />

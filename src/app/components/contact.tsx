@@ -107,7 +107,7 @@ export default function Contact() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-white text-center py-4 text-black text-sm font-medium">
+      <footer className="bg-white text-center py-2 md:py-6 font-outfit text-black text-xs md:text-2xl  font-normal">
         © 2025 Goutham Gopinath • Full Stack Developer & Designer
       </footer>
     </div>

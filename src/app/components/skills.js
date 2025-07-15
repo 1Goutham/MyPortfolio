@@ -12,7 +12,7 @@ export default function Skills() {
       className="flex flex-col md:flex-row w-full bg-white items-stretch"
     >
       {/* Text Section */}
-      <div className="w-full md:w-1/2 flex justify-center items-center pl-6 pr-6 order-1 md:order-2">
+      <div className="w-full md:w-1/2 flex justify-center items-center md:items-center md:justify-center pl-6 pr-6 order-1 md:order-2">
         <div className="space-y-6">
           <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10}>
             <div className="flex justify-center md:justify-start">
@@ -41,7 +41,7 @@ export default function Skills() {
           </ScrollReveal>
           <div>
             <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0}>
-            <Image src="/logos.png" alt="Figma" width={300} height={300} />
+            <Image src="/logos.png" alt="SkillsLogos" width={300} height={300} />
             </FadeContent>
             </div>
         </div>

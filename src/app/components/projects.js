@@ -30,7 +30,7 @@ export default function Projects() {
   ];
 
   return (
-    <div className="bg-black py-8 px-4 md:px-18 space-y-8">
+    <div id="projects" className="bg-black py-8 px-4 md:px-18 space-y-8">
       <div className="flex justify-center">
         <h1 className="text-white font-anonymous-pro text-3xl md:text-5xl md:p-10">[Projects]</h1>
       </div>

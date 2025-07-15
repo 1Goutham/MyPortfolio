@@ -11,7 +11,7 @@ export default function Hero() {
   const items = [
     { label: "Home", href: "#" },
     { label: "About", href: "#about" },
-    { label: "Projects", href: "#" },
+    { label: "Projects", href: "#projects" },
     { label: "Resume", href: "#" }
   ];
 
@@ -33,7 +33,7 @@ export default function Hero() {
             colors={[1, 2, 3, 1, 2, 3, 1, 4]}
           />
         </div>
-        <button className="flex justify-center items-center backdrop-blur-lg h-9 bg-white/10 border border-white/40 rounded-3xl px-6 py-2 shadow-md hover:scale-105 transition-transform duration-300">
+        <button className="flex justify-center items-center backdrop-blur-lg h-9 bg-white/10 border border-white/40 rounded-3xl px-6 py-2 shadow-md hover:scale-105 transition-transform duration-300" onClick={() => window.open('https://www.linkedin.com/in/goutham-g-98a0ba253/')}>
           <ShinyText text="Contact!" disabled={false} speed={2} className="custom-class" />
         </button>
       </nav>

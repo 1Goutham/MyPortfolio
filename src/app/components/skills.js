@@ -3,12 +3,12 @@
 import Image from "next/image";
 import ScrollReveal from "./layout/scrollreveal";
 import FadeContent from "./layout/fade-in";
-import ShinyText from './layout/shiny-text';
+
 
 export default function Skills() {
   return (
     <div
-      id="about"
+      id="skills"
       className="flex flex-col md:flex-row w-full bg-white items-stretch"
     >
       {/* Text Section */}

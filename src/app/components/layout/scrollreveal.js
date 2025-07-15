@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useMemo } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef, useMemo } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,18 +12,17 @@ const ScrollReveal = ({
   enableBlur = true,
   baseOpacity = 0.1,
   baseRotation = 3,
-  blurStrength = 4,
-  containerClassName = "",
-  textClassName = "",
-  rotationEnd = "bottom bottom",
-  wordAnimationEnd = "bottom bottom",
+  blurStrength = 6,
+  containerClassName = '',
+  textClassName = '',
+  rotationEnd = 'bottom bottom',
+  wordAnimationEnd = 'bottom bottom',
 }) => {
   const containerRef = useRef(null);
-  const isTextOnly = typeof children === "string";
+  const isTextOnly = typeof children === 'string';
 
   const splitText = useMemo(() => {
     if (!isTextOnly) return null;
-
     return children.split(/(\s+)/).map((word, index) => {
       if (word.match(/^\s+$/)) return word;
       return (
@@ -39,85 +38,56 @@ const ScrollReveal = ({
     if (!el) return;
 
     const scroller = scrollContainerRef?.current || window;
+    const isInViewport = el.getBoundingClientRect().top < window.innerHeight;
+    const triggerStart = isInViewport ? 'top bottom' : 'top 90%';
 
-    // Whole block rotation
-    gsap.fromTo(
-      el,
-      { transformOrigin: "0% 50%", rotate: baseRotation },
-      {
-        ease: "none",
-        rotate: 0,
-        scrollTrigger: {
-          trigger: el,
-          scroller,
-          start: "top bottom",
-          end: rotationEnd,
-          scrub: true,
-        },
-      }
-    );
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        scroller,
+        start: triggerStart,
+        end: rotationEnd,
+        scrub: 0.7, // smoother
+      },
+    });
 
     if (isTextOnly) {
-      const wordElements = el.querySelectorAll(".word");
-
-      // Fade in words
-      gsap.fromTo(
+      const wordElements = el.querySelectorAll('.word');
+      timeline.fromTo(
         wordElements,
-        { opacity: baseOpacity, willChange: "opacity" },
         {
-          ease: "none",
+          opacity: baseOpacity,
+          filter: enableBlur ? `blur(${blurStrength}px)` : 'none',
+          willChange: 'opacity, filter',
+        },
+        {
           opacity: 1,
-          stagger: 0.05,
-          scrollTrigger: {
-            trigger: el,
-            scroller,
-            start: "top bottom-=20%",
-            end: wordAnimationEnd,
-            scrub: true,
-          },
+          filter: 'blur(0px)',
+          stagger: 0.1, // slower reveal
+          ease: 'power2.out',
+          duration: 1.5,
         }
       );
-
-      // Optional blur animation
-      if (enableBlur) {
-        gsap.fromTo(
-          wordElements,
-          { filter: `blur(${blurStrength}px)` },
-          {
-            ease: "none",
-            filter: "blur(0px)",
-            stagger: 0.05,
-            scrollTrigger: {
-              trigger: el,
-              scroller,
-              start: "top bottom-=20%",
-              end: wordAnimationEnd,
-              scrub: true,
-            },
-          }
-        );
-      }
     } else {
-      // Generic block animation for JSX
-      gsap.fromTo(
+      timeline.fromTo(
         el,
         {
           opacity: baseOpacity,
-          filter: enableBlur ? `blur(${blurStrength}px)` : "none",
+          filter: enableBlur ? `blur(${blurStrength}px)` : 'none',
+          willChange: 'opacity, filter',
         },
         {
           opacity: 1,
-          filter: "blur(0px)",
-          scrollTrigger: {
-            trigger: el,
-            scroller,
-            start: "top bottom",
-            end: "top center",
-            scrub: true,
-          },
+          filter: 'blur(0px)',
+          ease: 'power2.out',
+          duration: 1.8,
         }
       );
     }
+
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 300);
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());

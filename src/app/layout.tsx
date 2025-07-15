@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Montserrat, Anonymous_Pro, Outfit } from "next/font/google";
+import { Toaster } from 'react-hot-toast';
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -44,6 +45,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable}  ${montserrat.variable} ${anonymousPro.variable} ${outfit.variable} antialiased`}
       >
+         <Toaster
+          position="bottom-center"
+          toastOptions={{
+            style: {
+              background: '#1f1f1f',
+              color: '#fff',
+              border: '1px solid #333',
+            },
+          }}
+        />
         {children}
       </body>
     </html>

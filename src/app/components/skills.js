@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import ScrollReveal from "./layout/scrollreveal";
+import FadeContent from "./layout/fade-in";
+import ShinyText from './layout/shiny-text';
 
 export default function Skills() {
   return (
     <div
       id="about"
-      className="flex flex-col md:flex-row w-full bg-white min-h-[600px] md:h-[600px]"
+      className="flex flex-col md:flex-row w-full bg-white items-stretch"
     >
       {/* Text Section */}
       <div className="w-full md:w-1/2 flex justify-center items-center pl-6 pr-6 order-1 md:order-2">
@@ -32,22 +34,25 @@ export default function Skills() {
           </ScrollReveal>
           <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10}>
             <div>
-              <p className="text-black font-outfit text-xs md:text-base mt-1 md:mt-3 text-justify max-w-md">
+              <p className="text-black font-outfit text-xs md:text-base text-justify max-w-md">
               Every decision I make stems from clarity and purpose. I care about the details that improve usability, performance, and the overall experience.
               </p>
             </div>
           </ScrollReveal>
           <div>
+            <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0}>
             <Image src="/logos.png" alt="Figma" width={300} height={300} />
+            </FadeContent>
             </div>
         </div>
         
       </div>
 
       {/* Image Section */}
-      <div className="w-full md:w-1/2 flex justify-center items-center md:justify-end md:items-end mt-4 md:mt-0 order-2 md:order-1">
+      <div className="w-full md:w-1/2 flex justify-center items-end md:justify-center md:items-end order-2 md:order-1">
+      
         <Image
-          className="w-full h-[300px] md:h-[600px] object-contain"
+          className=" w-full h-[300px] md:w-[550px] md:h-[400px] object-contain"
           src="/picwlap.png"
           alt="portfoliopic"
           width={300}

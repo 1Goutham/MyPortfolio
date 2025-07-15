@@ -25,6 +25,35 @@
   }
 }
 
+.word {
+  will-change: opacity, transform, filter;
+  transform: translate3d(0, 0, 0); /* triggers GPU acceleration */
+}
+
+/* Optional: prevent text flicker during animation */
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth; /* optional for better UX */
+  backface-visibility: hidden; /* reduce animation jank */
+}
+
+/* ScrollTrigger safe padding (especially if mobile address bar hides) */
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Image responsiveness fix if not using Tailwind's object-* properly */
+img,
+picture,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -34,3 +63,9 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+html, body {
+  overflow-x: hidden;
+  height: 100%;
+}
+
